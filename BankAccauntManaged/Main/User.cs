@@ -8,7 +8,7 @@ namespace BankAccauntManaged.Main
 {
     internal class User
     {
-        private int _id;
+        public int _id;
         static int _count;
         string _name;
         public string Name {
@@ -81,7 +81,7 @@ namespace BankAccauntManaged.Main
         public bool IsAdmin;
         public bool IsBlocked;
         public bool IsLogged;
-        public User(string name,string surname,string mail,string password,bool isadmin=false)
+        public User(string name,string surname,string mail,string password,bool isadmin)
         {
             Name = name;
             Surname = surname;

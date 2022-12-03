@@ -37,11 +37,11 @@ namespace BankAccauntManaged.Repository
             return false;
         }
 
-       
 
-        public void Registration(string name, string surname, string email, string password, bool isadmin)
+
+        public void Registration(User user)
         {
-            User user = new User(name,surname,email,password);
+             
             Array.Resize(ref _bank.Users, _bank.Users.Length + 1);
             _bank.Users[_bank.Users.Length - 1] =user;
         }

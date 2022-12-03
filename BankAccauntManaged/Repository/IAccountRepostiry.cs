@@ -11,7 +11,7 @@ namespace BankAccauntManaged.ILogin
     internal interface IAccountRepostiry
     {
         public Bank Bank { get; }
-        void Registration(string name, string surname,string email,string password,bool isadmin);
+        void Registration(User user);
 
         bool Login(string email,string password);
 

@@ -11,11 +11,13 @@ namespace BankAccauntManaged.Repository
     {
      public  Bank Bank { get; }
 
-        double CheckBalance(User user);
-        double TopUpBalance(User user,double num);
+        void CheckBalance(User user);
+        void TopUpBalance(User user);
         string ChangePassword(User user,string newPassword);
 
         void UserList();
         bool BlockUSer(User user);
+
+        bool LogOut(User user);
     }
 }

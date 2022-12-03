@@ -1,0 +1,15 @@
+C:\Users\99450\source\repos\BankAccauntManaged\BankAccauntManaged\obj\Debug\net6.0\BankAccauntManaged.csproj.AssemblyReference.cache
+C:\Users\99450\source\repos\BankAccauntManaged\BankAccauntManaged\obj\Debug\net6.0\BankAccauntManaged.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\99450\source\repos\BankAccauntManaged\BankAccauntManaged\obj\Debug\net6.0\BankAccauntManaged.AssemblyInfoInputs.cache
+C:\Users\99450\source\repos\BankAccauntManaged\BankAccauntManaged\obj\Debug\net6.0\BankAccauntManaged.AssemblyInfo.cs
+C:\Users\99450\source\repos\BankAccauntManaged\BankAccauntManaged\obj\Debug\net6.0\BankAccauntManaged.csproj.CoreCompileInputs.cache
+C:\Users\99450\source\repos\BankAccauntManaged\BankAccauntManaged\bin\Debug\net6.0\BankAccauntManaged.exe
+C:\Users\99450\source\repos\BankAccauntManaged\BankAccauntManaged\bin\Debug\net6.0\BankAccauntManaged.deps.json
+C:\Users\99450\source\repos\BankAccauntManaged\BankAccauntManaged\bin\Debug\net6.0\BankAccauntManaged.runtimeconfig.json
+C:\Users\99450\source\repos\BankAccauntManaged\BankAccauntManaged\bin\Debug\net6.0\BankAccauntManaged.dll
+C:\Users\99450\source\repos\BankAccauntManaged\BankAccauntManaged\bin\Debug\net6.0\BankAccauntManaged.pdb
+C:\Users\99450\source\repos\BankAccauntManaged\BankAccauntManaged\obj\Debug\net6.0\BankAccauntManaged.dll
+C:\Users\99450\source\repos\BankAccauntManaged\BankAccauntManaged\obj\Debug\net6.0\refint\BankAccauntManaged.dll
+C:\Users\99450\source\repos\BankAccauntManaged\BankAccauntManaged\obj\Debug\net6.0\BankAccauntManaged.pdb
+C:\Users\99450\source\repos\BankAccauntManaged\BankAccauntManaged\obj\Debug\net6.0\BankAccauntManaged.genruntimeconfig.cache
+C:\Users\99450\source\repos\BankAccauntManaged\BankAccauntManaged\obj\Debug\net6.0\ref\BankAccauntManaged.dll

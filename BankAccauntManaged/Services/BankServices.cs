@@ -17,25 +17,37 @@ namespace BankAccauntManaged.Services
             _bankRepository=new BankRepository();   
         }
 
-        public bool UserList(User user)
+        public bool UserList(string email)
         {
-            if (user.IsAdmin==true)
+            User exicted;
+            foreach (User userrr in _bankRepository.Bank.Users)
             {
-            _bankRepository.UserList();
+                if(userrr.Email == email)
+                {
+                    if (userrr.IsAdmin == true)
+                    {
+                        exicted = userrr;
+                        _bankRepository.UserList();
+                        return true;
+                    }
+                    return false;
+                }   
             }
             return false;
         }
-        public bool BlockUser(User user)
+        public bool BlockUser(string email)
         {
-            if (user.IsAdmin == true)
+            User exicted;
+            foreach (User userrr in _bankRepository.Bank.Users)
             {
-                foreach (User userr in _bankRepository.Bank.Users)
+                if (userrr.Email == email)
                 {
-                    _bankRepository.BlockUSer(user);
+                    exicted=userrr;
+                    _bankRepository.BlockUSer(exicted);
                     return true;
                 }
             }
-            return false ;
+            return false;
         }
 
         public bool ChangePassword(string oldpass,string newpass)
@@ -52,7 +64,37 @@ namespace BankAccauntManaged.Services
             }
             return false;
         }
-       
+        public void LogOut(User user)
+        {
+            _bankRepository.LogOut(user);
+        }
+
+        public bool CheckBalance(string password)
+        {
+            foreach (User userr in _bankRepository.Bank.Users)
+            {
+                if (userr.Password == password)
+                {
+                    _bankRepository.CheckBalance(userr);
+                    return true;
+                }
+            }
+            return false;
+        }
+
+        public bool TopUpBalance(string password, double newBalance)
+        {
+            foreach (User userr in _bankRepository.Bank.Users)
+            {
+                if (userr.Password == password)
+                {
+                    userr.Balance = newBalance;
+                    _bankRepository.TopUpBalance(userr);
+                    return true;
+                }
+            }
+            return false;
+        }
     }
 
 }

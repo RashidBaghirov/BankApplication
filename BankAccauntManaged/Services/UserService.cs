@@ -17,23 +17,23 @@ namespace BankAccauntManaged.Services
             _userRepostiry = new AccountRepostry();
         }
 
-        public bool? Registration(string name, string surname, string email, string password, bool isadmin)
+        public bool Registration(string name, string surname, string email, string password, bool isadmin)
         {
-            
-            foreach (User mail in _userRepostiry.Bank.Users)
-            {
-                if (mail.Email == email)
-                {
+            //foreach (User mail in _userRepostiry.Bank.Users)
+            //{
+            //    if (email == null)
+            //    {
 
-                    return false;
-                }
-            }
+            //        return false;
+            //    }
+            //}
+
             User user=new User(name, surname, email, password, isadmin);
-            _userRepostiry.Registration(name,surname,email,password,isadmin);
+            _userRepostiry.Registration(user);
                         return true;
         }
 
-        public bool FindUser(string email,string password)
+        public bool FindUser(string email)
         {
             User exicted=default;
             foreach (User mail in _userRepostiry.Bank.Users)
@@ -53,6 +53,7 @@ namespace BankAccauntManaged.Services
         }
         bool FindEmailandPass(string email, string password)
         {
+            
             foreach (User user in _userRepostiry.Bank.Users)
             {
                 if(user.Email == email && user.Password == password)
@@ -60,7 +61,8 @@ namespace BankAccauntManaged.Services
                     return true;
                 } 
             }
-            return false;
+            
+           return false;
         }
         
         public bool Login(string email,string password)
@@ -68,14 +70,10 @@ namespace BankAccauntManaged.Services
             FindEmailandPass(email, password);
             if(FindEmailandPass(email, password) == true)
             {
+            _userRepostiry.Login(email, password);
                 return true;
             }
-            else
-            {
-                return false;
-            }
-            _userRepostiry.Login(email, password);
-            return true;
+            return false;
         }
     }
     

@@ -27,14 +27,14 @@ namespace BankAccauntManaged.Repository
             return user.Password;
         }
 
-        public double CheckBalance(User user)
+        public void CheckBalance(User user)
         {
-            throw new NotImplementedException();
+            Console.WriteLine(user.Balance); ;
         }
 
-        public double TopUpBalance(User user, double num)
+        public void TopUpBalance(User user)
         {
-            throw new NotImplementedException();
+            Console.WriteLine(user.Balance); 
         }
 
         public void UserList()
@@ -45,15 +45,9 @@ namespace BankAccauntManaged.Repository
             }
         }
 
-        void AdminWatch(User user)
+       public bool LogOut(User user)
         {
-            if (user.IsAdmin == true)
-            {
-                foreach (User email in _bank.Users)
-                {
-                    Console.WriteLine(email);
-                }
-            }
+            return user.IsLogged = false;
         }
     }
 }
