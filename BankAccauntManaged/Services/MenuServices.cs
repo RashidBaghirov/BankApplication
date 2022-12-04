@@ -26,6 +26,7 @@ namespace BankAccauntManaged.Services
             _accountservice = new AccountService(myBank);
 
         }
+        #region User methods
         public static void Registration()
         {
 
@@ -119,7 +120,9 @@ namespace BankAccauntManaged.Services
             }
             return false;
         }
+        #endregion
 
+        #region Bank methods
         public static void ChangePassword()
         {
             string password;
@@ -161,20 +164,24 @@ namespace BankAccauntManaged.Services
                 Console.WriteLine("How much you want to increase");
                 newBalance = Convert.ToDouble(Console.ReadLine());
             }
-            while (_bankservices.TopUpBalance(password, newBalance));
+            while (!_bankservices.TopUpBalance(password, newBalance));
+            Console.WriteLine(".....");
+            Thread.Sleep(2000);
 
         }
         public static void UserList()
         {
             string email;
-            do
-            {
-                Console.ForegroundColor = ConsoleColor.Red;
+                   Console.ForegroundColor = ConsoleColor.Red;
                 Console.WriteLine("Enter admin's email");
                 email = Console.ReadLine();
 
 
-            } while (_bankservices.UserList(email));
+            if (_bankservices.UserList(email))
+            {
+                Console.WriteLine("USers");
+                Thread.Sleep(3500);
+            }
 
         }
         public static void BlockUser()
@@ -196,8 +203,13 @@ namespace BankAccauntManaged.Services
             }
             return false;
         }
+        public static void Logout()
+        {
+            MenuServices.ProgramService();
+        }
+        #endregion
 
-
+        #region Methods
         static bool SurnameChecker(string surname)
         {
             if (surname.Length > 2)
@@ -252,10 +264,6 @@ namespace BankAccauntManaged.Services
                 Console.WriteLine("The @ sign should have been included");
                 return false;
             }
-        }
-        public static void Logout()
-        {
-            MenuServices.ProgramService();
         }
 
         public static void ProgramService()
@@ -348,7 +356,7 @@ namespace BankAccauntManaged.Services
                 }
             } while (BankServiceSelect != '0');
 
-
+            #endregion
         }
     }
 

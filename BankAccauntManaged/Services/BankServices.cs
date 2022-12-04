@@ -20,18 +20,15 @@ namespace BankAccauntManaged.Services
 
         public bool UserList(string email)
         {
-            User exicted;
             foreach (User userrr in Bank.Users)
             {
                 if (userrr.Email == email)
                 {
                     if (userrr.IsAdmin == true)
                     {
-                        exicted = userrr;
-                        _bankrepository.UserList();
+                        _bankrepository.UserList(userrr);
                         return true;
                     }
-                    return false;
                 }
             }
             return false;
@@ -82,15 +79,16 @@ namespace BankAccauntManaged.Services
 
         public bool TopUpBalance(string password, double newbalance)
         {
-            foreach (User user in Bank.Users)
+            foreach (User userrr in _bankrepository.Bank.Users)
             {
-                if (user.Password == password)
+                if (userrr.Password == password)
                 {
-                    _bankrepository.ToUpBalance(user, newbalance);
+                    userrr.Balance += newbalance;
+                    _bankrepository.ToUpBalance(userrr);
                     return true;
                 }
             }
-            return false;
+            return true;
         }
 
 

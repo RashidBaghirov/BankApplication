@@ -43,7 +43,7 @@ namespace BankAccauntManaged.Repository
         public void Login(User user)
         {
             user.IsLogged = true;
-            Console.WriteLine($"user:{user.Name} {user.Surname}");
+            Console.WriteLine($"user:{user.Name} {user.Surname} {user.Id} {user.IsAdmin}");
             Thread.Sleep(2000);
         }
 

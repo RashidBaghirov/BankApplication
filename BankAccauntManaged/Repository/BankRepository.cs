@@ -22,11 +22,12 @@ namespace BankAccauntManaged.Repository
         {
             _bank = Bank;
         }
-        public void UserList()
+        public void UserList(User user)
         {
-            foreach (User user in _bank.Users)
+            foreach (User userr in Bank.Users)
             {
                 Console.WriteLine(user.Name, user.Surname);
+                Thread.Sleep(3000);
             }
         }
 
@@ -51,10 +52,10 @@ namespace BankAccauntManaged.Repository
             Thread.Sleep(2000);
         }
 
-        public void ToUpBalance(User user, double newbalance)
+        public void ToUpBalance(User user)
         {
             
-            Console.WriteLine($" new balance {user.Balance+newbalance}");
+            Console.WriteLine($" new balance {user.Balance}");
         }
 
         public bool LogOut(User user)

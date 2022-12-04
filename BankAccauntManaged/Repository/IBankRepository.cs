@@ -9,11 +9,14 @@ namespace BankAccauntManaged.Repository
 {
     internal interface IBankRepository
     {
-        void UserList();
+        public Bank Bank { get; }  
+        
+        
+        void UserList(User user);
         bool BlockUser(User user);
         string ChangePassword(User user, string newPassword);
         void CheckBalance(double balance);
-        void ToUpBalance(User user, double amount);
+        void ToUpBalance(User user);
         bool LogOut(User user);
     }
 }
