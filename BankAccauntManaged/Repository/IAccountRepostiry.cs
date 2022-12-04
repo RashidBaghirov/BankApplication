@@ -13,7 +13,7 @@ namespace BankAccauntManaged.ILogin
         public Bank Bank { get; }
         void Registration(User user);
 
-        bool Login(string email,string password);
+        void Login(User user);
 
         void FindUser(User user);
 

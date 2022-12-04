@@ -9,13 +9,14 @@ namespace BankAccauntManaged
         {
 
             char selection;
-            char selection1;
             Console.WriteLine("Welcome our Bank");
+          
             do
             {
-                Console.WriteLine("1.REGISTRATION");
-                Console.WriteLine("2.LOGIN");
-                
+                Console.WriteLine("1. User Registration");
+                Console.WriteLine("2. User Login");
+                //Console.WriteLine("3. Find User");
+                Console.WriteLine("0. Exit");
             selection:
                 selection = Console.ReadKey().KeyChar;
                 Console.WriteLine();
@@ -23,11 +24,22 @@ namespace BankAccauntManaged
                 {
                     case '1':
                         MenuServices.Registration();
+                        Thread.Sleep(500);
                         Console.Clear();
+
                         break;
                     case '2':
                         MenuServices.Login();
+                        Bank();
+                        Thread.Sleep(500);
                         Console.Clear();
+
+                        break;
+                    case '3':
+                        MenuServices.FindUser();
+                        Thread.Sleep(500);
+                        Console.Clear();
+
                         break;
                     default:
                         Console.WriteLine("Please choose correct number");
@@ -36,54 +48,70 @@ namespace BankAccauntManaged
                 }
             } while (selection != '0');
 
-            Console.WriteLine("1.FINDUSER");
-            Console.WriteLine("2.CHECKBALANCE");
-            Console.WriteLine("3.TOPUPBALANCE");
-            Console.WriteLine("4.CHANGEPASSWORD");
-            Console.WriteLine("5.USERLIST");
-            Console.WriteLine("6.BLOCKUSER");
-            char select;
-                selection1:
-            select = Console.ReadKey().KeyChar;
-            switch (selection)
-            {
-                case '1':
-                    MenuServices.FindUser();
-                    Thread.Sleep(3000);
-                    Console.Clear();
-                    break;
-                case '2':
-                    MenuServices.CheckBalance();
-                    Console.Clear();
-                    break;
-                case '3':
-                    MenuServices.TopUpBalance();
-                    Console.Clear();
-                    break;
-                case '4':
-                    MenuServices.ChangePassword();
-                    Thread.Sleep(3000);
-                    Console.Clear();
-                    break;
-                case '5':
-                    MenuServices.UserList();
-                    Console.Clear();
-                    break;
-                case '6':
-                    MenuServices.BlockUser();
-                    Console.Clear();
-                    break;
-                case '0':
-                    break;
-                default:
-                    Console.WriteLine("Please choose correct number");
-                    Console.Clear();
-                    goto selection1;
-            } while (select != 0) ;
            
-        } 
 
+
+
+
+
+
+        }
+            public static void Bank()
+            {
+
+                char selection1;
+                Console.WriteLine("Welcome our Bank");
+                do
+                {
+                    Console.WriteLine("1. Check Balance");
+                    Console.WriteLine("2. Top Up Balance");
+                    Console.WriteLine("3. Change Password");
+                    Console.WriteLine("4. Bank User List");
+                    Console.WriteLine("5. Block User");
+                    Console.WriteLine("6. Log Out ");
+                selection1:
+                    selection1 = Console.ReadKey().KeyChar;
+                    Console.WriteLine();
+                    switch (selection1)
+                    {
+                        case '1':
+                            MenuServices.CheckBalans();
+                            Thread.Sleep(500);
+                            Console.Clear();
+
+                            break;
+                        case '2':
+                            MenuServices.TopUpBalance();
+                            Thread.Sleep(500);
+                            Console.Clear();
+                            break;
+                        case '3':
+                            MenuServices.ChangePassword();
+                            Thread.Sleep(500);
+                            Console.Clear();
+
+                            break;
+                        case '4':
+                            MenuServices.UserList();
+                            Thread.Sleep(500);
+                            Console.Clear();
+                            break;
+
+                        case '5':
+                            MenuServices.BlockUser();
+                            Thread.Sleep(500);
+                            Console.Clear();
+                            break;
+                        default:
+                            Console.WriteLine("Please choose correct number");
+                            Console.Clear();
+                            goto selection1;
+                    }
+                } while (selection1 != '0');
+            }
     }
+
+    
 }
 
 

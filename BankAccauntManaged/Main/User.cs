@@ -8,15 +8,13 @@ namespace BankAccauntManaged.Main
 {
     internal class User
     {
-        public int _id;
-        static int _count;
-        string _name;
-        public string Name {
+        protected string _name;
+        public string Name
+        {
             get
             {
                 return _name;
             }
-
             set
             {
                 if (value.Length > 2)
@@ -24,42 +22,22 @@ namespace BankAccauntManaged.Main
                     _name = value;
                 }
             }
-                
         }
-        string _surname;
-        public string Surname {
+        protected string _surname;
+        public string Surname
+        {
             get
             {
                 return _surname;
             }
-                
             set
             {
                 if (value.Length > 2)
                 {
-                    _surname = value;   
+                    _surname = value;
                 }
             }
         }
-        public double Balance;
-        string _email;
-        public string Email 
-        {
-            get
-            {
-                return _email;
-            }
-
-            set
-            {
-                if (value.Contains('@') == true)
-                {
-                    value = _email;
-                }
-            }
-                
-        }
-
         string _password;
         public string Password
         {
@@ -67,38 +45,64 @@ namespace BankAccauntManaged.Main
             {
                 return _password;
             }
-
             set
             {
                 if (CheckPassword(value))
                 {
                     _password = value;
                 }
-            }
 
-                
+            }
         }
+
+        public int Id;
+
         public bool IsAdmin;
         public bool IsBlocked;
         public bool IsLogged;
-        public User(string name,string surname,string mail,string password,bool isadmin)
+        public double Balance;
+        static int count;
+
+        protected string _email;
+        public string Email
+        {
+            get
+            {
+                return _email;
+            }
+            set
+            {
+                if (EmailChecker(value))
+                {
+                    _email = value;
+                }
+            }
+        }
+
+
+
+
+        static User()
+        {
+            count = 0;
+        }
+
+        public User(string name, string surname, string password, string email, bool isadmin)
         {
             Name = name;
             Surname = surname;
-            Email = mail;
             Password = password;
-            IsAdmin = isadmin;
+            Email = email;
             IsBlocked = false;
+            IsAdmin = isadmin;
             IsLogged = false;
-            _id=++_count;
-        }
-       
-        static User()
-        {
-            _count = 100;
+            Balance = default;
+            Id = ++count;
+
+
         }
 
-        static bool CheckPassword(string pw)
+        public static bool CheckPassword(string pw)
         {
             bool hasDigit = false;
             bool hasLower = false;
@@ -131,5 +135,22 @@ namespace BankAccauntManaged.Main
             return result;
         }
 
+        public static bool EmailChecker(string symble)
+        {
+            if (symble.Contains('@'))
+            {
+                return true;
+
+            }
+            else
+            {
+                return false;
+            }
+        }
+
+        public override string ToString()
+        {
+            return base.ToString();
+        }
     }
 }

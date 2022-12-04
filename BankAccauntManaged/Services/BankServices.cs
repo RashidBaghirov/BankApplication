@@ -30,7 +30,7 @@ namespace BankAccauntManaged.Services
                         _bankRepository.UserList();
                         return true;
                     }
-                    return false;
+                    
                 }   
             }
             return false;
@@ -75,11 +75,12 @@ namespace BankAccauntManaged.Services
             {
                 if (userr.Password == password)
                 {
+                    
                     _bankRepository.CheckBalance(userr);
                     return true;
                 }
             }
-            return false;
+               return false;
         }
 
         public bool TopUpBalance(string password, double newBalance)
@@ -88,7 +89,7 @@ namespace BankAccauntManaged.Services
             {
                 if (userr.Password == password)
                 {
-                    userr.Balance = newBalance;
+                    userr.Balance += newBalance;
                     _bankRepository.TopUpBalance(userr);
                     return true;
                 }

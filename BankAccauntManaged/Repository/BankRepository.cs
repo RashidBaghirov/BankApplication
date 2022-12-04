@@ -29,11 +29,13 @@ namespace BankAccauntManaged.Repository
 
         public void CheckBalance(User user)
         {
-            Console.WriteLine(user.Balance); ;
+            C
+            Console.WriteLine(user.Balance); 
         }
 
         public void TopUpBalance(User user)
         {
+ 
             Console.WriteLine(user.Balance); 
         }
 

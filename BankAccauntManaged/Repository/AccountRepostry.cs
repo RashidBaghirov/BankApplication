@@ -11,59 +11,49 @@ namespace BankAccauntManaged.Repository
 {
     internal class AccountRepostry:IAccountRepostiry
     {
-        Bank _bank;
+        private Bank _bank;
 
-        public Bank Bank { get => _bank; }
+        public Bank Bank
+        {
+            get
+            {
+                return _bank;
+            }
+        }
 
         public AccountRepostry()
         {
             _bank = new Bank();
         }
 
-       
-
-        public bool Login(string email,string password)
-        {
-            foreach (User userr in _bank.Users)
-            {
-                if(userr.Email==email && userr.Password == password)
-                {
-                    userr.IsLogged = true;
-                    return true;
-                        
-                }
-                
-            }
-            return false;
-        }
-
-
-
         public void Registration(User user)
         {
-             
+            user.Balance = 0;
             Array.Resize(ref _bank.Users, _bank.Users.Length + 1);
-            _bank.Users[_bank.Users.Length - 1] =user;
+
+            _bank.Users[_bank.Users.Length - 1] = user;
+
+            Console.WriteLine("qeydiyatdan ugurla kecdiniz");
+
+            Thread.Sleep(3000);
+
+
         }
 
-        
+        public void Login(User user)
+        {
+            user.IsLogged = true;
+            Console.WriteLine($"user:{user.Name} {user.Surname}");
+            Thread.Sleep(2000);
+        }
 
         public void FindUser(User user)
         {
-            if (user is not null)
-            {
-                foreach (User userr in _bank.Users)
-                {
-                    Console.WriteLine(userr);
-                }
-            }
-            else
-            {
-                Console.WriteLine("There is no user");
-            }
+            Console.WriteLine($"User: {user.Name} {user.Surname}");
+            Thread.Sleep(2000);
         }
 
-      
-      
+
     }
 }
+

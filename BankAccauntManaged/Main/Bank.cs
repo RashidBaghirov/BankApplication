@@ -8,19 +8,22 @@ namespace BankAccauntManaged.Main
 {
     internal class Bank
     {
-        public int ID;
-        static int _count;
-       public User[] Users;
+        public int Id;
+
+        public User[] Users = new User[0];
+
+        static int count = 0;
+
 
         public Bank()
         {
-           ID=++_count;
+            Id = ++count;
+
         }
         static Bank()
         {
-            _count = 1000;
+            count = 0;
         }
-
 
     }
 
