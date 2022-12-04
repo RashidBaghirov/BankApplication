@@ -12,20 +12,22 @@ namespace BankAccauntManaged.Services
     internal class AccountService
     {
         readonly IAccountRepostiry _repository;
-        public AccountService()
+        Bank Bank;
+        public AccountService(Bank bank)
         {
-            _repository = new AccountRepostry();
+            Bank = bank;
+           _repository = new AccountRepostry(Bank);
         }
 
 
         public bool? Registration(string name, string surname, string password, string email, bool isadmin)
         {
 
-            foreach (User user in _repository.Bank.Users)
+            foreach (User user in Bank.Users)
             {
                 if (user.Email == email)
                 {
-                    Console.WriteLine("Bu Adda Email Movcutdur");
+                    Console.WriteLine("This email has been used");
                     Thread.Sleep(2000);
                     Console.Clear();
                     MenuServices.Registration();
@@ -34,6 +36,7 @@ namespace BankAccauntManaged.Services
             }
             User newUser = new User(name, surname, password, email, isadmin);
             _repository.Registration(newUser);
+            Console.Clear();
             return true;
 
         }
@@ -41,7 +44,7 @@ namespace BankAccauntManaged.Services
         public bool FindUser(string email)
         {
             User exicted = default;
-            foreach (User mail in _repository.Bank.Users)
+            foreach (User mail in Bank.Users)
             {
                 if (mail.Email == email)
                 {
@@ -51,27 +54,28 @@ namespace BankAccauntManaged.Services
                 }
             }
 
-            Console.WriteLine("Istifadeci tapilmadi");
-            return true;
+            Console.WriteLine("User not found");
+            return false;
         }
 
 
         public bool Login(string email, string password)
         {
-            foreach (User userList in _repository.Bank.Users)
+            foreach (User user in Bank.Users)
             {
-                if (userList.Email.Equals(email) && userList.Password.Equals(password))
+                if (user.Email.Equals(email) && user.Password.Equals(password))
                 {
-                    _repository.Login(userList);
-                    return false;
+                    _repository.Login(user);
+                    MenuServices.AllServicess();
+                    return true;
                 }
             }
-            Console.WriteLine("User Tapilmadi");
+            Console.WriteLine("User not found");
             Thread.Sleep(2000);
             Console.Clear();
             MenuServices.Login();
-            return true;
+            return false;
         }
+
     }
-    
 }

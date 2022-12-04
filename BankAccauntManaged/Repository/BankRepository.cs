@@ -10,46 +10,61 @@ namespace BankAccauntManaged.Repository
     internal class BankRepository : IBankRepository
     {
         Bank _bank;
-        public Bank Bank { get => _bank; }
-        public BankRepository()
+        public Bank Bank
         {
-            _bank=new Bank();
+            get
+            {
+                return _bank;
+            }
         }
 
-        public bool BlockUSer(User user)
+        public BankRepository(Bank bank)
         {
-          return user.IsBlocked = true;   
+            _bank = Bank;
+        }
+        public void UserList()
+        {
+            foreach (User user in _bank.Users)
+            {
+                Console.WriteLine(user.Name, user.Surname);
+            }
+        }
+
+        public bool BlockUser(User user)
+        {
+            user.IsBlocked = true;
+            return true;
+
         }
 
         public string ChangePassword(User user, string newPassword)
         {
-            user.Password=newPassword;
+            user.Password = newPassword;
+            Console.WriteLine("password changed successfully");
             return user.Password;
         }
 
-        public void CheckBalance(User user)
+        public void CheckBalance(double balance)
         {
-            C
-            Console.WriteLine(user.Balance); 
+
+            Console.WriteLine(balance);
+            Thread.Sleep(2000);
         }
 
-        public void TopUpBalance(User user)
+        public void ToUpBalance(User user, double newbalance)
         {
- 
-            Console.WriteLine(user.Balance); 
+            
+            Console.WriteLine($" new balance {user.Balance+newbalance}");
         }
 
-        public void UserList()
-        {
-            foreach (User item in _bank.Users)
-            {
-                    Console.WriteLine(item.Name,item.Surname);
-            }
-        }
-
-       public bool LogOut(User user)
+        public bool LogOut(User user)
         {
             return user.IsLogged = false;
+        }
+
+        public override string ToString()
+        {
+            return base.ToString();
         }
     }
 }

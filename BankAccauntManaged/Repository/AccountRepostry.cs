@@ -21,19 +21,19 @@ namespace BankAccauntManaged.Repository
             }
         }
 
-        public AccountRepostry()
+        public AccountRepostry(Bank bank)
         {
-            _bank = new Bank();
+            _bank = bank;
         }
 
         public void Registration(User user)
         {
-            user.Balance = 0;
+
             Array.Resize(ref _bank.Users, _bank.Users.Length + 1);
 
             _bank.Users[_bank.Users.Length - 1] = user;
 
-            Console.WriteLine("qeydiyatdan ugurla kecdiniz");
+            Console.WriteLine("registration was successful");
 
             Thread.Sleep(3000);
 

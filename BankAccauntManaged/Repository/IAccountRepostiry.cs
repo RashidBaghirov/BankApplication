@@ -10,7 +10,6 @@ namespace BankAccauntManaged.ILogin
 {
     internal interface IAccountRepostiry
     {
-        public Bank Bank { get; }
         void Registration(User user);
 
         void Login(User user);

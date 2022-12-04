@@ -8,94 +8,96 @@ using System.Threading.Tasks;
 
 namespace BankAccauntManaged.Services
 {
-    internal class BankServices 
+    internal class BankServices
     {
-        readonly IBankRepository _bankRepository;
-
-        public BankServices()
+        readonly IBankRepository _bankrepository;
+        Bank Bank;
+        public BankServices(Bank bank)
         {
-            _bankRepository=new BankRepository();   
+            Bank = bank;
+            _bankrepository = new BankRepository(Bank);
         }
 
         public bool UserList(string email)
         {
             User exicted;
-            foreach (User userrr in _bankRepository.Bank.Users)
+            foreach (User userrr in Bank.Users)
             {
-                if(userrr.Email == email)
+                if (userrr.Email == email)
                 {
                     if (userrr.IsAdmin == true)
                     {
                         exicted = userrr;
-                        _bankRepository.UserList();
+                        _bankrepository.UserList();
                         return true;
                     }
-                    
-                }   
+                    return false;
+                }
             }
+            return false;
+        }
+        public bool ChangePassword(string currentpassword, string newPassword)
+        {
+            User existed = null;
+
+            foreach (User pass in Bank.Users)
+            {
+                if (pass.Password == currentpassword)
+                {
+                    existed = pass;
+                    _bankrepository.ChangePassword(existed, newPassword);
+                    return true;
+                }             
+            }
+            Console.WriteLine("Password error");
             return false;
         }
         public bool BlockUser(string email)
         {
             User exicted;
-            foreach (User userrr in _bankRepository.Bank.Users)
+            foreach (User userrr in Bank.Users)
             {
                 if (userrr.Email == email)
                 {
-                    exicted=userrr;
-                    _bankRepository.BlockUSer(exicted);
+                    exicted = userrr;
+                    _bankrepository.BlockUser(exicted);
                     return true;
                 }
             }
             return false;
         }
-
-        public bool ChangePassword(string oldpass,string newpass)
-        {
-            User exicted = default;
-            foreach (User pass in _bankRepository.Bank.Users)
-            {
-                if (pass.Password == oldpass)
-                {
-                    exicted = pass;
-                    _bankRepository.ChangePassword(exicted, newpass);
-                    return true;
-                }
-            }
-            return false;
-        }
-        public void LogOut(User user)
-        {
-            _bankRepository.LogOut(user);
-        }
-
         public bool CheckBalance(string password)
         {
-            foreach (User userr in _bankRepository.Bank.Users)
+            foreach (User user in Bank.Users)
             {
-                if (userr.Password == password)
+                if (user.Password == password)
                 {
-                    
-                    _bankRepository.CheckBalance(userr);
-                    return true;
-                }
-            }
-               return false;
-        }
-
-        public bool TopUpBalance(string password, double newBalance)
-        {
-            foreach (User userr in _bankRepository.Bank.Users)
-            {
-                if (userr.Password == password)
-                {
-                    userr.Balance += newBalance;
-                    _bankRepository.TopUpBalance(userr);
+                    double balance = 0.0;
+                    _bankrepository.CheckBalance(balance);
                     return true;
                 }
             }
             return false;
         }
-    }
 
+        public bool TopUpBalance(string password, double newbalance)
+        {
+            foreach (User user in Bank.Users)
+            {
+                if (user.Password == password)
+                {
+                    _bankrepository.ToUpBalance(user, newbalance);
+                    return true;
+                }
+            }
+            return false;
+        }
+
+
+        public void LogOut(User user)
+        {
+            _bankrepository.LogOut(user);
+        }
+
+    }
 }
