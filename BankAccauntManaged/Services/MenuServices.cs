@@ -139,35 +139,39 @@ namespace BankAccauntManaged.Services
             } while (!_bankservices.ChangePassword(password, newpassword));
 
         }
-        public static bool CheckBalans()
+        public static void CheckBalance()
         {
             string password;
-            Console.ForegroundColor = ConsoleColor.Red;
-            Console.WriteLine("Enter password to view balance");
+            Console.WriteLine("Check Balance:\r\n ");
+            Console.WriteLine("Please enter your password:  ");
             password = Console.ReadLine();
+            Console.WriteLine("    Balance:      ");
             if (_bankservices.CheckBalance(password))
             {
-                return true;
-            }
-            return false;
-        }
+                Console.WriteLine("Returns to the Bank Menu...");
+                Thread.Sleep(5000);
 
+            }
+
+        }
+        #endregion
+
+
+        #region TopUpBalance
         public static void TopUpBalance()
         {
             string password;
             double newBalance;
-            do
+            Console.WriteLine("Top Up Balance\r\n");
+            Console.WriteLine("Please enter  password: ");
+            password = Console.ReadLine();
+            Console.WriteLine("Write the amount you will pay: ");
+            newBalance = Convert.ToDouble(Console.ReadLine());
+            if (_bankservices.TopUpBalance(password, newBalance))
             {
-                Console.ForegroundColor = ConsoleColor.Red;
-                Console.WriteLine("Enter email to top up balance");
-                password = Console.ReadLine();
-                Console.WriteLine("How much you want to increase");
-                newBalance = Convert.ToDouble(Console.ReadLine());
+                Console.WriteLine("Returns to the Bank Menu...");
+                Thread.Sleep(5000);
             }
-            while (!_bankservices.TopUpBalance(password, newBalance));
-            Console.WriteLine(".....");
-            Thread.Sleep(2000);
-
         }
         public static void UserList()
         {
@@ -326,7 +330,7 @@ namespace BankAccauntManaged.Services
                 switch (BankServiceSelect)
                 {
                     case '1':
-                        MenuServices.CheckBalans();
+                        MenuServices.CheckBalance();
                         Console.Clear();
                         break;
                     case '2':

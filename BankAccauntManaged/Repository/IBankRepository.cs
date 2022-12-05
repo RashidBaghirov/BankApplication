@@ -15,8 +15,8 @@ namespace BankAccauntManaged.Repository
         void UserList(User user);
         bool BlockUser(User user);
         string ChangePassword(User user, string newPassword);
-        void CheckBalance(double balance);
-        void ToUpBalance(User user);
+        void CheckBalance(User user);
+        void ToUpBalance(User user,double balance);
         bool LogOut(User user);
     }
 }

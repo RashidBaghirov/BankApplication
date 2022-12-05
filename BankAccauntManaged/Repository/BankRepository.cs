@@ -45,18 +45,19 @@ namespace BankAccauntManaged.Repository
             return user.Password;
         }
 
-        public void CheckBalance(double balance)
+        public void CheckBalance(User user)
         {
 
-            Console.WriteLine(balance);
-            Thread.Sleep(2000);
+            Console.WriteLine(user.Balance);
         }
 
-        public void ToUpBalance(User user)
+        public void ToUpBalance(User user, double balance)
         {
-            
-            Console.WriteLine($" new balance {user.Balance}");
+            user.Balance += balance;
+            Console.WriteLine("Successfully Added. New Balance: " + user.Balance);
+
         }
+    
 
         public bool LogOut(User user)
         {

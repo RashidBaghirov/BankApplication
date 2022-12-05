@@ -65,31 +65,36 @@ namespace BankAccauntManaged.Services
         }
         public bool CheckBalance(string password)
         {
-            foreach (User user in Bank.Users)
+
+            foreach (User userrr in Bank.Users)
             {
-                if (user.Password == password)
+                if (userrr.Password == password)
                 {
                     double balance = 0.0;
-                    _bankrepository.CheckBalance(balance);
+                    _bankrepository.CheckBalance(userrr);
                     return true;
                 }
             }
             return false;
         }
 
-        public bool TopUpBalance(string password, double newbalance)
+
+       
+        public bool TopUpBalance(string password, double newBal)
         {
-            foreach (User userrr in _bankrepository.Bank.Users)
+            foreach (User userrr in Bank.Users)
             {
                 if (userrr.Password == password)
                 {
-                    userrr.Balance += newbalance;
-                    _bankrepository.ToUpBalance(userrr);
+
+                    _bankrepository.ToUpBalance(userrr, newBal);
                     return true;
                 }
             }
-            return true;
+            return false;
         }
+
+
 
 
         public void LogOut(User user)
